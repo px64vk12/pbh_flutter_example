@@ -1,7 +1,11 @@
-/// Copyright 2022. ⓒ DevStory.co.kr All rights reserved.
+/// 1. 터미널에 flutter pub add shared_preferences
+/// 2.
+///
+///
+import 'dart:convert';
 
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +18,21 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+void save_pref(String value) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString('text', value);
+}
+
+Future<String> load_pref() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String stringValue = prefs.getString('text') ?? '';
+  return stringValue;
+}
+
 class _MyAppState extends State<MyApp> {
+  TextEditingController editController = new TextEditingController();
+  String text = "";
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,47 +46,36 @@ class _MyAppState extends State<MyApp> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // 글자 출력
-              Text("안녕하세요"),
+              Text("저장된 값"),
+              Text('$text'),
 
-              // 텍스트 입력
               TextField(
-                autofocus: true, // 자동 포커스
-                onChanged: (text) {
-                  // 텍스트 변경시 실행되는 함수
-                  print(text);
-                },
-                onSubmitted: (text) {
-                  // Enter를 누를 때 실행되는 함수
-                  print("on submitted : $text");
-                },
+                controller: editController,
               ),
 
-              // 버튼 만들기
-              // ElevatedButton : 네모난 기본 버튼
               ElevatedButton(
                 onPressed: () {
-                  print("Elevated Button 클릭");
+                  save_pref(editController.text);
+                  print(editController.text);
                 },
-                child: Text('Elevated Button'),
-              ),
-              // TextButton : 텍스트를 버튼으로 만들 수 있습니다. 하이퍼 링크
-              TextButton(
-                onPressed: () {
-                  print("Text Button 클릭");
-                },
-                child: Text('Text Button'),
-              ),
-              // IconButton : 아이콘도 버튼으로 만들 수 있습니다.
-              IconButton(
-                onPressed: () {
-                  print("Icon Button 클릭");
-                },
-                icon: Icon(Icons.add),
+                child: Text('저장하기!'),
               ),
 
-              // Image : 이미지 링크를 가져옵니다.
-              Image.network(
-                  "https://upload.wikimedia.org/wikipedia/ko/thumb/2/24/Lenna.png/220px-Lenna.png")
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    load_pref().then((val) {
+                      // int가 나오면 해당 값을 출력
+                      text = val;
+                    }).catchError((error) {
+                      // error가 해당 에러를 출력
+                      print('error: $error');
+                    });
+                  });
+                  print(text);
+                },
+                child: Text('불러오기!'),
+              ),
             ],
           ),
         ),
