@@ -1,3 +1,7 @@
+/// Copyright 2022. ⓒ DevStory.co.kr All rights reserved.
+
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,104 +11,62 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Shazam',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 1,
-      length: 3,
-      child: Builder(builder: (context) {
-        DefaultTabController.of(context)?.addListener(() {
-          setState(() {});
-        });
-
-        return Scaffold(
-          body: Stack(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.green,
+          // stack은 위젯을 겹쳐서 배치하거나, 자유롭게 배치할 때 씁니다.
+          child: Stack(
+            alignment: Alignment.center, // 기본 중앙 정렬
             children: [
-              TabBarView(
-                children: [
-                  FirstTab(),
-                  SecondTab(),
-                  ThirdTab(),
-                ],
-              ),
-              SafeArea(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-                  child: Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.topCenter,
-                        child: TabPageSelector(
-                          color: DefaultTabController.of(context)?.index == 1
-                              ? Colors.blue[300]
-                              : Colors.grey[400],
-                          selectedColor:
-                              DefaultTabController.of(context)?.index == 1
-                                  ? Colors.white
-                                  : Colors.blue,
-                          indicatorSize: 8,
-                        ),
-                      ),
-                    ],
-                  ),
+              // Positioned는 원하는 위치에 배치합니다. 우측 상단
+              Positioned(
+                right: 0,
+                top: 0,
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.amber,
                 ),
+              ),
+
+              // 우측 하단
+              Positioned(
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.blue,
+                ),
+              ),
+
+              // 좌측 하단
+              Positioned(
+                left: 0,
+                bottom: 0,
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.pink,
+                ),
+              ),
+
+              // 중앙
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.indigo,
               ),
             ],
           ),
-        );
-      }),
+        ),
+      ),
     );
-  }
-}
-
-// 첫번째 페이지
-class FirstTab extends StatelessWidget {
-  const FirstTab({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('첫번째 페이지'));
-  }
-}
-
-// 두번째 페이지
-class SecondTab extends StatelessWidget {
-  const SecondTab({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('두번째 페이지'));
-  }
-}
-
-// 세번째 페이지
-class ThirdTab extends StatelessWidget {
-  const ThirdTab({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('세번째 페이지'));
   }
 }
