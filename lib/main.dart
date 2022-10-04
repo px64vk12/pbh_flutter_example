@@ -15,10 +15,40 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool isChecked = false;
-  double sliderValue = 0;
   @override
   Widget build(BuildContext context) {
+    const songs = [
+      {
+        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
+        'title': '가을밤에 든 생각',
+        'artist': '잔나비',
+      },
+      {
+        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
+        'title': '가을밤에 든 생각',
+        'artist': '잔나비',
+      },
+      {
+        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
+        'title': '가을밤에 든 생각',
+        'artist': '잔나비',
+      },
+      {
+        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
+        'title': '가을밤에 든 생각',
+        'artist': '잔나비',
+      },
+      {
+        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
+        'title': '가을밤에 든 생각',
+        'artist': '잔나비',
+      },
+      {
+        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
+        'title': '가을밤에 든 생각',
+        'artist': '잔나비',
+      },
+    ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(),
@@ -29,26 +59,24 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Switch(
-                  value: isChecked,
-                  onChanged: (bool value) {
-                    // This is called when the user toggles the switch.
-                    setState(() {
-                      isChecked = value;
-                    });
-                    print(value);
-                  }),
-              Slider(
-                value: sliderValue,
-                max: 100,
-                divisions: 5,
-                label: sliderValue.round().toString(),
-                onChanged: (double value) {
-                  setState(() {
-                    sliderValue = value;
-                  });
-                },
-              ),
+              Expanded(
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, childAspectRatio: 3 / 5),
+                  itemCount: songs.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text(songs[index]['title'].toString()),
+                          Image.network(songs[index]['imageUrl'].toString()),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              )
             ],
           ),
         ),
