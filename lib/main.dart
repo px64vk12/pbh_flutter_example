@@ -60,18 +60,20 @@ class _MyAppState extends State<MyApp> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, childAspectRatio: 3 / 5),
-                  itemCount: songs.length,
+                child: ListView.builder(
+                  itemCount: 100, // 전체 아이템 개수
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(songs[index]['title'].toString()),
-                          Image.network(songs[index]['imageUrl'].toString()),
-                        ],
+                    // index는 0 ~ 99까지 증가하며 itemCount만큼 호출됩니다.
+                    // 위젯을 반환해야 합니다.
+                    return Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.amber[100 * (index % 5)],
+                      child: Text(
+                        "$index",
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
                       ),
                     );
                   },
