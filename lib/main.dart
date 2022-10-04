@@ -1,78 +1,79 @@
 /// Copyright 2022. ⓒ DevStory.co.kr All rights reserved.
 
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Welcome to AppBar'),
-          actions: [
-            IconButton(icon: Icon(Icons.image), onPressed: () {}),
-            IconButton(icon: Icon(Icons.navigate_next), onPressed: () {}),
-          ],
+      debugShowCheckedModeBanner: false,
+      home: FirstPage(),
+    );
+  }
+}
+
+// 첫 번째 페이지
+class FirstPage extends StatefulWidget {
+  const FirstPage({Key? key}) : super(key: key);
+
+  @override
+  State<FirstPage> createState() => _FirstPageState();
+}
+
+class _FirstPageState extends State<FirstPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("홈"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: Text("다음 페이지로 이동"),
+          onPressed: () {
+            // 페이지 이동
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SecondPage()),
+            );
+          },
         ),
-        // appbar leading 대신 drawer 추가
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              DrawerHeader(
-                child: Text('Drawer Header'),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-              ),
-              ListTile(
-                title: Text('Item 1'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('Item 2'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-        ),
-        body: Container(
-          width: double.infinity,
-          color: Colors.white,
-          child: Text('appBar Test'),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.text_snippet),
-              label: 'hi1',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'hi2',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.people),
-              label: 'hi3',
-            ),
-          ],
-          selectedItemColor: Colors.lightGreen,
+      ),
+    );
+  }
+}
+
+// 두 번째 페이지
+class SecondPage extends StatefulWidget {
+  const SecondPage({Key? key}) : super(key: key);
+
+  @override
+  State<SecondPage> createState() => _SecondPageState();
+}
+
+class _SecondPageState extends State<SecondPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("두 번째 페이지 입니다!"),
+      ),
+      backgroundColor: Colors.amber,
+      body: Center(
+        child: ElevatedButton(
+          child: Text("첫 번째 페이지로 되돌아가기"),
+          onPressed: () {
+            // 뒤로가기
+            Navigator.pop(context);
+          },
         ),
       ),
     );
