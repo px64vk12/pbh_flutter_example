@@ -1,6 +1,6 @@
 # flutter_example
 
-A new Flutter project.
+lib 에서 확인
 
 ## Getting Started
 
