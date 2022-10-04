@@ -19,70 +19,60 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text('Welcome to AppBar'),
+          actions: [
+            IconButton(icon: Icon(Icons.image), onPressed: () {}),
+            IconButton(icon: Icon(Icons.navigate_next), onPressed: () {}),
+          ],
+        ),
+        // appbar leading 대신 drawer 추가
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                child: Text('Drawer Header'),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+              ),
+              ListTile(
+                title: Text('Item 1'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('Item 2'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ),
         body: Container(
           width: double.infinity,
           color: Colors.white,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                  child: PageView(
-                // 페이지 목록
-                children: [
-                  // 첫 번째 페이지
-                  SizedBox.expand(
-                    child: Container(
-                      color: Colors.red,
-                      child: Center(
-                        child: Text(
-                          'Page index : 0',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  // 두 번째 페이지
-                  SizedBox.expand(
-                    child: Container(
-                      color: Colors.yellow,
-                      child: Center(
-                        child: Text(
-                          'Page index : 1',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  // 세 번째 페이지
-                  SizedBox.expand(
-                    child: Container(
-                      color: Colors.green,
-                      child: Center(
-                        child: Text(
-                          'Page index : 2',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  // 네 번째 페이지
-                  SizedBox.expand(
-                    child: Container(
-                      color: Colors.blue,
-                      child: Center(
-                        child: Text(
-                          'Page index : 3',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ))
-            ],
-          ),
+          child: Text('appBar Test'),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.text_snippet),
+              label: 'hi1',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'hi2',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.people),
+              label: 'hi3',
+            ),
+          ],
+          selectedItemColor: Colors.lightGreen,
         ),
       ),
     );
