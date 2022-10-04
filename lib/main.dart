@@ -17,38 +17,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    const songs = [
-      {
-        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
-        'title': '가을밤에 든 생각',
-        'artist': '잔나비',
-      },
-      {
-        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
-        'title': '가을밤에 든 생각',
-        'artist': '잔나비',
-      },
-      {
-        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
-        'title': '가을밤에 든 생각',
-        'artist': '잔나비',
-      },
-      {
-        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
-        'title': '가을밤에 든 생각',
-        'artist': '잔나비',
-      },
-      {
-        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
-        'title': '가을밤에 든 생각',
-        'artist': '잔나비',
-      },
-      {
-        'imageUrl': 'https://i.ytimg.com/vi/jAO0KXRdz_4/hqdefault.jpg',
-        'title': '가을밤에 든 생각',
-        'artist': '잔나비',
-      },
-    ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(),
