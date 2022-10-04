@@ -28,25 +28,59 @@ class _MyAppState extends State<MyApp> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                child: ListView.builder(
-                  itemCount: 100, // 전체 아이템 개수
-                  itemBuilder: (context, index) {
-                    // index는 0 ~ 99까지 증가하며 itemCount만큼 호출됩니다.
-                    // 위젯을 반환해야 합니다.
-                    return Container(
-                      height: 100,
-                      width: 100,
-                      color: Colors.amber[100 * (index % 5)],
-                      child: Text(
-                        "$index",
-                        style: TextStyle(
-                          fontSize: 24,
+                  child: PageView(
+                // 페이지 목록
+                children: [
+                  // 첫 번째 페이지
+                  SizedBox.expand(
+                    child: Container(
+                      color: Colors.red,
+                      child: Center(
+                        child: Text(
+                          'Page index : 0',
+                          style: TextStyle(fontSize: 20),
                         ),
                       ),
-                    );
-                  },
-                ),
-              )
+                    ),
+                  ),
+                  // 두 번째 페이지
+                  SizedBox.expand(
+                    child: Container(
+                      color: Colors.yellow,
+                      child: Center(
+                        child: Text(
+                          'Page index : 1',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ),
+                  // 세 번째 페이지
+                  SizedBox.expand(
+                    child: Container(
+                      color: Colors.green,
+                      child: Center(
+                        child: Text(
+                          'Page index : 2',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ),
+                  // 네 번째 페이지
+                  SizedBox.expand(
+                    child: Container(
+                      color: Colors.blue,
+                      child: Center(
+                        child: Text(
+                          'Page index : 3',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ))
             ],
           ),
         ),
