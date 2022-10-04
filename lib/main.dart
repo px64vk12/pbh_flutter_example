@@ -1,7 +1,6 @@
 /// Copyright 2022. ⓒ DevStory.co.kr All rights reserved.
 
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,53 +14,49 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      // Scaffold는 appbar, bottomNav 같은 요소를 추가할 수 있습니다.
       home: Scaffold(
+        appBar: AppBar(),
+        drawer: Drawer(),
+        // contatiner는 화면의 색, 크기를 지정할 수 있습니다.
         body: Container(
           width: double.infinity,
           height: double.infinity,
           color: Colors.green,
-          // stack은 위젯을 겹쳐서 배치하거나, 자유롭게 배치할 때 씁니다.
-          child: Stack(
-            alignment: Alignment.center, // 기본 중앙 정렬
+          // column, row는 위젯을 나열할 수 있습니다.
+          child: Column(
+            crossAxisAlignment: // 정렬 방향을 설정 할 수 있습니다.
+                CrossAxisAlignment.center,
             children: [
-              // Positioned는 원하는 위치에 배치합니다. 우측 상단
-              Positioned(
-                right: 0,
-                top: 0,
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.amber,
+              ),
+              Row(
+                crossAxisAlignment: // 정렬 방향을 설정 할 수 있습니다.
+                    CrossAxisAlignment.start, // 빨강이 위로온 것을 볼 수 있습니다.
+                children: [
+                  Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.blue[200],
+                  ),
+                  Container(
+                    height: 50,
+                    width: 50,
+                    color: Colors.red[600],
+                  ),
+                ],
+              ),
+              // 위젯의 간격을 설정합니다.
+              Padding(
+                padding: const EdgeInsets.all(20.0),
                 child: Container(
                   height: 100,
                   width: 100,
                   color: Colors.amber,
                 ),
-              ),
-
-              // 우측 하단
-              Positioned(
-                right: 0,
-                bottom: 0,
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.blue,
-                ),
-              ),
-
-              // 좌측 하단
-              Positioned(
-                left: 0,
-                bottom: 0,
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.pink,
-                ),
-              ),
-
-              // 중앙
-              Container(
-                height: 100,
-                width: 100,
-                color: Colors.indigo,
               ),
             ],
           ),
