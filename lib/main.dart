@@ -33,29 +33,23 @@ class MyApp extends StatelessWidget {
                 width: 100,
                 color: Colors.amber,
               ),
-              Row(
-                crossAxisAlignment: // 정렬 방향을 설정 할 수 있습니다.
-                    CrossAxisAlignment.start, // 빨강이 위로온 것을 볼 수 있습니다.
-                children: [
-                  Container(
-                    height: 200,
-                    width: 200,
-                    color: Colors.blue[200],
-                  ),
-                  Container(
-                    height: 50,
-                    width: 50,
-                    color: Colors.red[600],
-                  ),
-                ],
+              //Sizedbox는 공간을 강제로 띄우거나
+              //위젯의 크기를 강제할 때 씁니다.
+              SizedBox(
+                height: 100,
+                width: 100,
               ),
-              // 위젯의 간격을 설정합니다.
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.amber,
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.amber,
+              ),
+              SizedBox(
+                height: 100,
+                width: 30,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text("test"),
                 ),
               ),
             ],
