@@ -13,6 +13,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.15
+  lottie:
 
 dev_dependencies:
   flutter_test:
@@ -21,6 +22,9 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   context_menus: ^1.0.2
 
+assets:
+  - assets/tea-cup.json
+  
 flutter:
 
   uses-material-design: true
